@@ -1,5 +1,7 @@
 # PublicEvent
+Public event is a very small (just over 1k minified, around 500 bytes minified and compressed) event emitter with subscribe/unsubscribe capabilities that has no dependencies and is quite easy to set-up and use as it requires no configuration.
 
+Public Event is released under the MIT License so you can modify it in any way you want or include it inside your own code.
 
 ## Installation
 
