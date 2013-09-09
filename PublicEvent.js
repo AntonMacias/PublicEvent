@@ -3,19 +3,22 @@
 (function (global) {
     'use strict';
     function moduleDefinition() {
+
         var PublicEvent = function () {
             this.listeners = [];
         };
-        PublicEvent.prototype.addListener = function (listener) {
+        
+        PublicEvent.prototype.addListener = function (listener, thisBinding) {
             var i;
+            thisBinding = thisBinding ? thisBinding : {};
             if (typeof listener === 'function') {
                 for (i = 0; i < this.listeners.length; i += 1) {
-                    if (this.listeners[i] === listener) {
+                    if (this.listeners[i][0] === listener) {
                         break;
                     }
                 }
                 if (i === this.listeners.length) {
-                    this.listeners.push(listener);
+                    this.listeners.push([listener, thisBinding]);
                 }
             }
         };
@@ -23,7 +26,7 @@
         PublicEvent.prototype.removeListener = function (listener) {
             var i;
             for (i = 0; i < this.listeners.length; i += 1) {
-                if (this.listeners[i] === listener) {
+                if (this.listeners[i][0] === listener) {
                     break;
                 }
             }
@@ -33,10 +36,11 @@
         };
 
         PublicEvent.prototype.callListeners = function () {
-            var i, l;
+            var i, l, t;
             for (i = 0; i < this.listeners.length; i += 1) {
-                l = this.listeners[i];
-                l.apply(l, arguments);
+                l = this.listeners[i][0];
+                t = this.listeners[i][1];
+                l.apply(t, arguments);
             }
         };
 
