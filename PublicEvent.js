@@ -43,6 +43,14 @@
             }
         };
 
+        PublicEvent.prototype.clear = function () {
+            this.listeners = [];
+        };
+
+        PublicEvent.prototype.clearListeners = function () {
+            this.listeners = [];
+        };
+
         PublicEvent.prototype.trigger = PublicEvent.prototype.callListeners;
 
         PublicEvent.prototype.fire = PublicEvent.prototype.callListeners;
