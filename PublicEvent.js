@@ -9,7 +9,8 @@
         };
         
         PublicEvent.prototype.addListener = function (listener, thisBinding) {
-            var i, thisBinding = thisBinding ? thisBinding : {};
+            var i;
+            thisBinding = thisBinding || {};
             if (typeof listener === 'function') {
                 for (i = 0; i < this.listeners.length; i += 1) {
                     if (this.listeners[i][0] === listener && this.listeners[i][1] === thisBinding) {
