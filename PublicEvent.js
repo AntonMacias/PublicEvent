@@ -69,4 +69,4 @@
         // browser global
         global.PublicEvent = moduleDefinition();
     }
-}());
+} ());
